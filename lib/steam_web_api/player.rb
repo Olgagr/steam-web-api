@@ -19,12 +19,16 @@ module SteamWebApi
 
 		def stats_for_game(app_id)
 			data = JSON.parse(open(stats_for_game_url(app_id)).read)['playerstats']
-			OpenStruct.new(steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], stats: data['stats'])
+			OpenStruct.new(steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], stats: data['stats'], success: true)
+		rescue OpenURI::HTTPError => e
+			OpenStruct.new(steam_id: nil, game_name: nil, achievements: [], stats: [], success: false, error: e.message)		
 		end
 
 		def achievements(app_id, options={})
 			data = JSON.parse(open(achievements_url(app_id, options)).read)['playerstats']
 			OpenStruct.new(steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], success: data['success'])
+		rescue OpenURI::HTTPError => e
+			OpenStruct.new(steam_id: nil, game_name: nil, achievements: [], success: false, error: e.message)
 		end
 
 		private

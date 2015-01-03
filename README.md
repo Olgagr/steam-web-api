@@ -75,6 +75,8 @@ data.steam_id # user steam identifier
 data.game_name # game name
 data.achievements # list of achievements
 data.stats # list of stats
+data.success # boolean value indicates if request was succesful. If false, probably the game doesn't have stats and Steam returns 400 status
+data.error # unless nil, it contains error message for request
 
 achievement = data.achievements.first
 achievement['name'] # achievement identifier
@@ -94,7 +96,8 @@ data = player.achievements(game_id)
 data.steam_id # user steam identifier
 data.game_name # game name
 data.achievements # list of achievements
-data.success # boolean value
+data.success # boolean value indicates if request was succesful. If false, probably the game doesn't have stats and Steam returns 400 status
+data.error # unless nil, it contains error message for request
 
 achievement = data.achievements.first
 achievement['apiname'] # achievement name
