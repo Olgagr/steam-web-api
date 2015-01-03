@@ -137,7 +137,7 @@ RSpec.describe SteamWebApi::Player do
 		end
 		
 		it 'returns player stats for a game' do
-			data = player.stats_for_game(appid: 3)
+			data = player.stats_for_game(3)
 			expect(data.steam_id).to eq '123'
 			expect(data.game_name).to eq 'ValveTestApp8930' 		
 			expect(data.achievements.length).to eq 2		

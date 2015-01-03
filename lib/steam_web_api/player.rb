@@ -12,22 +12,21 @@ module SteamWebApi
 		end
 
 		# @todo check what response is for user with any game
-		def owned_games(include_played_free_games: false, include_appinfo: false)
-			data = JSON.parse(open(owned_games_url(include_played_free_games, include_appinfo)).read)['response']
+		def owned_games(options={})
+			data = JSON.parse(open(owned_games_url(options)).read)['response']
 			OpenStruct.new(count: data['game_count'], games: data['games'])
 		end
 
-		def stats_for_game(appid: nil)
+		def stats_for_game(appid)
 			data = JSON.parse(open(stats_for_game_url(appid)).read)['playerstats']
 			OpenStruct.new(steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], stats: data['stats'])
 		end
 
 		private
 
-		def owned_games_url(include_played_free_games, include_appinfo)
+		def owned_games_url(options)
 			base_url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=#{SteamWebApi.config.api_key}&steamid=#{steam_id}&format=json"
-			base_url << '&include_played_free_games=1' if include_played_free_games
-			base_url << '&include_appinfo=1' if include_appinfo
+			base_url << options.map { |k, v| "&#{k}=#{v ? 1 : 0}" }.join
 			base_url
 		end
 
