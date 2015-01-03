@@ -1,6 +1,6 @@
 # SteamWebApi
 
-TODO: Write a gem description
+This is gem that it makes trivial to use Steam Web API. It supports all methods listed here: https://developer.valvesoftware.com/wiki/Steam_Web_API
 
 ## Installation
 
@@ -33,7 +33,58 @@ SteamWebApi.configure do |config|
 end
 ```
 
-This is better to not include API key as plain text in you repository. For better solution, please check (dotenv gem)[https://github.com/bkeepers/dotenv]
+This is better not to include API key as plain text in you repository. For better solution, please check [dotenv gem](https://github.com/bkeepers/dotenv).
+
+### Player
+
+**Get list of owned games** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29). To make it possible to make this API call, you need to have API key for your app and steam identifier of the Steam user.
+
+```ruby
+# player_steam_id - this is a Steam identifier for user
+player = SteamWebApi::Player(player_steam_id)
+data = player.owned_games
+data.count # how many games user posses (integer)
+data.games # list of user's games
+
+# game datails
+game = data.games.first
+game['appid'] # identifier for game (integer)
+game['playtime_forever'] # total playtime for game (integer)
+
+# additional options
+# 1. include_played_free_games - include free games in results
+# 2. include_appinfo - include game name and logo information in the output. The default is to return appids only.
+data = player.owned_games(include_played_free_games: true, include_appinfo: true)
+
+# if include_appinfo is set to true
+game = data.games.first
+game['name'] # game's name
+game['playtime_2weeks'] # total number of minutes played in the last 2 weeks
+game['img_icon_url'] # filename of game's icon
+game['img_logo_url'] # filename of game logo
+game['has_community_visible_stats'] # indicates there is a stats page with achievements or other game stats available for this game
+```
+
+**Get user stats for game** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetUserStatsForGame_.28v0002.29). To make it possible to make this API call, you need to have API key for your app and steam identifier of the Steam user.
+
+```ruby
+player = SteamWebApi::Player(player_steam_id)
+data = player.stats_for_game(game_id)
+
+data.steam_id # user steam identifier
+data.game_name # game name
+data.achievements # list of achievements
+data.stats # list of stats
+
+achievement = data.achievements.first
+achievement['name']
+achievement['achieved'] # integer (0 or 1)
+
+stat = data.stats.first
+stat['name']
+stat['value'] # integer
+```
+
 
 ## Contributing
 

@@ -1,5 +1,6 @@
 require "steam_web_api/version"
 require "steam_web_api/configuration"
+require "steam_web_api/player"
 
 begin
 	require "byebug"
