@@ -102,7 +102,7 @@ RSpec.describe SteamWebApi::Player do
 
 	end
 
-	describe '#player_stats' do
+	describe '#stats_for_game' do
 	  
 		before do
 			stub_request(:get, /GetUserStatsForGame/)  
@@ -143,6 +143,45 @@ RSpec.describe SteamWebApi::Player do
 			expect(data.achievements.length).to eq 2		
 			expect(data.stats.length).to eq 2		
 		end	
+
+	end
+
+	describe '#achievements' do
+	  
+		before do
+		  stub_request(:get, /GetPlayerAchievements/)
+		  	.to_return(body: '
+					{
+						"playerstats": {
+							"steamID": "123",
+							"gameName": "Sid Meier\'s Civilization V",
+							"achievements": [
+								{
+									"apiname": "ACHIEVEMENT_WIN_WASHINGTON",
+									"achieved": 1,
+									"name": "First in the Hearts of Your Countrymen",
+									"description": "Beat the game on any difficulty setting as Washington."
+								},
+								{
+									"apiname": "ACHIEVEMENT_WIN_ELIZABETH",
+									"achieved": 1,
+									"name": "Video et Taceo",
+									"description": "Beat the game on any difficulty setting as Elizabeth."
+								}
+								],
+							"success": true
+						}
+					}
+		  	')
+		end
+
+		it 'returns list of player achievements for game' do
+		  data = player.achievements(12)
+		  expect(data.steam_id).to eq '123'
+		  expect(data.game_name).to eq 'Sid Meier\'s Civilization V'
+		  expect(data.achievements.size).to eq 2
+		  expect(data.success).to be true 
+		end
 
 	end
 

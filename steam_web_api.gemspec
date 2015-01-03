@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Olga Grabek"]
   spec.email         = ["olga.grabek@gmail.com"]
   spec.summary       = %q{This is gem that it makes trivial to use Steam Web API}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.description   = %q{This is gem that it makes trivial to use Steam Web API}
   spec.homepage      = ""
   spec.license       = "MIT"
 

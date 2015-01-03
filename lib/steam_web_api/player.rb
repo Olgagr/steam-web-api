@@ -17,9 +17,14 @@ module SteamWebApi
 			OpenStruct.new(count: data['game_count'], games: data['games'])
 		end
 
-		def stats_for_game(appid)
-			data = JSON.parse(open(stats_for_game_url(appid)).read)['playerstats']
+		def stats_for_game(app_id)
+			data = JSON.parse(open(stats_for_game_url(app_id)).read)['playerstats']
 			OpenStruct.new(steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], stats: data['stats'])
+		end
+
+		def achievements(app_id, options={})
+			data = JSON.parse(open(achievements_url(app_id, options)).read)['playerstats']
+			OpenStruct.new(steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], success: data['success'])
 		end
 
 		private
@@ -32,6 +37,12 @@ module SteamWebApi
 
 		def stats_for_game_url(game_id)
 			"http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=#{game_id}&key=#{SteamWebApi.config.api_key}&steamid=#{steam_id}&format=json"
+		end
+
+		def achievements_url(game_id, options)
+			base_url = "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=#{game_id}&key=#{SteamWebApi.config.api_key}&steamid=#{steam_id}"			
+			base_url << options.map { |k,v| "&#{k}=v" }.join
+			base_url
 		end
 		
 	end

@@ -77,13 +77,38 @@ data.achievements # list of achievements
 data.stats # list of stats
 
 achievement = data.achievements.first
-achievement['name']
+achievement['name'] # achievement identifier
 achievement['achieved'] # integer (0 or 1)
 
 stat = data.stats.first
 stat['name']
 stat['value'] # integer
 ```
+
+**Get user achievements for game** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerAchievements_.28v0001.29). To make it possible to make this API call, you need to have API key for your app and steam identifier of the Steam user.
+
+```ruby
+player = SteamWebApi::Player(player_steam_id)
+data = player.achievements(game_id)
+
+data.steam_id # user steam identifier
+data.game_name # game name
+data.achievements # list of achievements
+data.success # boolean value
+
+achievement = data.achievements.first
+achievement['apiname'] # achievement name
+achievement['achieved'] # integer (0 or 1)
+
+# additional options
+# 1. l - Language. If specified, it will return language data (name, description) for the requested language.
+data = player.achievements(game_id, l: 'en')
+achievement = data.achievements.first
+achievement['name'] # achievement name
+achievement['description'] # achievement description
+```
+
+
 
 
 ## Contributing
