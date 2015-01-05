@@ -3,7 +3,7 @@ require "json"
 
 module SteamWebApi
 
-	class Player
+	class Player < Base
 
 		attr_accessor :steam_id
 
@@ -34,19 +34,16 @@ module SteamWebApi
 		private
 
 		def owned_games_url(options)
-			base_url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=#{SteamWebApi.config.api_key}&steamid=#{steam_id}&format=json"
-			base_url << options.map { |k, v| "&#{k}=#{v ? 1 : 0}" }.join
-			base_url
+			options.each { |k, v| options[k] = v ? 1 : 0 }
+			build 'IPlayerService/GetOwnedGames/v0001', { key: SteamWebApi.config.api_key, steamid: steam_id }.merge!(options)
 		end
 
 		def stats_for_game_url(game_id)
-			"http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=#{game_id}&key=#{SteamWebApi.config.api_key}&steamid=#{steam_id}&format=json"
+			build 'ISteamUserStats/GetUserStatsForGame/v0002', appid: game_id, key: SteamWebApi.config.api_key, steamid: steam_id
 		end
 
 		def achievements_url(game_id, options)
-			base_url = "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=#{game_id}&key=#{SteamWebApi.config.api_key}&steamid=#{steam_id}"			
-			base_url << options.map { |k,v| "&#{k}=v" }.join
-			base_url
+			build 'ISteamUserStats/GetPlayerAchievements/v0001', { appid: game_id, key: SteamWebApi.config.api_key, steamid: steam_id }.merge!(options)
 		end
 		
 	end

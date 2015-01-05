@@ -13,7 +13,7 @@ RSpec.describe SteamWebApi::Player do
 	describe '#owned_games' do
 
 		before do
-		  stub_request(:get, 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=12&steamid=12345&format=json')
+		  stub_request(:get, 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001?format=json&key=12&steamid=12345')
 		  	.to_return(body: '{
 					"response": {
 						"game_count": 4,
@@ -49,13 +49,13 @@ RSpec.describe SteamWebApi::Player do
 		context 'when include_played_free_games config attribute was set to true' do
 
 			before do
-				stub_request(:get, /include_played_free_games=1/)
+				stub_request(:get, 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001?format=json&key=12&steamid=12345&include_played_free_games=1')
 					.to_return(body: '{ "response": { "game_count": 0, "games": [] } }')  
 			end
 		  
 			it 'generates correct Steam URL' do
 				player_data = player.owned_games(include_played_free_games: true)
-				expect(a_request(:get, /include_played_free_games=1/)).to have_been_made.once  
+				expect(a_request(:get, 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001?format=json&key=12&steamid=12345&include_played_free_games=1')).to have_been_made.once  
 			end
 
 		end
@@ -63,7 +63,7 @@ RSpec.describe SteamWebApi::Player do
 		context 'when include_appinfo config attribute was set to true' do
 		  
 		  before do
-		  	stub_request(:get, /include_appinfo=1/)
+		  	stub_request(:get, 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001?format=json&key=12&steamid=12345&include_appinfo=1')
 		  		.to_return(body: '{
 		  			"response": {
 		  				"game_count": 1,
@@ -85,7 +85,7 @@ RSpec.describe SteamWebApi::Player do
 
 			it 'generates correct Steam URL' do
 				player_data = player.owned_games(include_appinfo: true)
-				expect(a_request(:get, /include_appinfo=1/)).to have_been_made.once	  
+				expect(a_request(:get, 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001?format=json&key=12&steamid=12345&include_appinfo=1')).to have_been_made.once	  
 			end
 
 			it 'returns additional info about game' do
@@ -107,7 +107,7 @@ RSpec.describe SteamWebApi::Player do
 		context 'when game has stats' do
 		  
 			before do
-				stub_request(:get, /GetUserStatsForGame/)  
+				stub_request(:get, "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002?format=json&appid=3&key=12&steamid=12345")  
 					.to_return(body: '
 						{
 							"playerstats": {
@@ -152,7 +152,7 @@ RSpec.describe SteamWebApi::Player do
 		context 'when game does not have stats' do
 		  
 			before do
-			  stub_request(:get, /GetUserStatsForGame/)
+			  stub_request(:get, "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002?format=json&appid=3&key=12&steamid=12345")
 			  	.to_return(status: [400, 'Bad Request'], body: '{}')
 			end
 
@@ -171,7 +171,7 @@ RSpec.describe SteamWebApi::Player do
 		context 'when game has stats' do
 
 			before do
-			  stub_request(:get, /GetPlayerAchievements/)
+			  stub_request(:get, "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001?format=json&&appid=12&key=12&steamid=12345")
 			  	.to_return(body: '
 						{
 							"playerstats": {
@@ -210,7 +210,7 @@ RSpec.describe SteamWebApi::Player do
 		context 'when game does not have stats' do
 		  
 			before do
-			  stub_request(:get, //)
+			  stub_request(:get, "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001?format=json&&appid=12&key=12&steamid=12345")
 			  	.to_return(status: [400, 'Bad Request'], body: '
 						{
 							"playerstats": {
