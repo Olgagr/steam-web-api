@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001?appid=232050&format=json&key=<API_KEY>&steamid=76561198046174695
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 06 Jan 2015 08:44:19 GMT
+      Expires:
+      - Tue, 06 Jan 2015 08:49:19 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '4225'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"playerstats\": {\n\t\t\"steamID\": \"76561198046174695\",\n\t\t\"gameName\":
+        \"Eador. Masters of the Broken World\",\n\t\t\"achievements\": [\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5115\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5CD5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5405\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5965\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5985\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5605\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_54D5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5915\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5B95\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_50D5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_57F5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_56C5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5025\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5155\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_57C5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_57E5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5075\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5485\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5795\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5085\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5FB5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5BC5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5B75\",\n\t\t\t\t\"achieved\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5CE5\",\n\t\t\t\t\"achieved\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5D35\",\n\t\t\t\t\"achieved\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5325\",\n\t\t\t\t\"achieved\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5875\",\n\t\t\t\t\"achieved\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5E65\",\n\t\t\t\t\"achieved\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5F05\",\n\t\t\t\t\"achieved\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5A75\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_54A5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5595\",\n\t\t\t\t\"achieved\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5BE5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5865\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5705\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_51F5\",\n\t\t\t\t\"achieved\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5315\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_50A5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5385\",\n\t\t\t\t\"achieved\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_57D5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5D55\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_53C5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5935\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_53D5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_59E5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5895\",\n\t\t\t\t\"achieved\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5855\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5A25\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5C65\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_57A5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_55A5\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5035\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5E35\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5F95\",\n\t\t\t\t\"achieved\": 1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"apiname\":
+        \"SNOWBIRDS_ACHIEVEMENT_5975\",\n\t\t\t\t\"achieved\": 1\n\t\t\t}\n\t\t]\n\t\t,\n\t\t\"success\":
+        true\n\t}\n}"
+    http_version: 
+  recorded_at: Tue, 06 Jan 2015 08:44:20 GMT
+recorded_with: VCR 2.9.3
