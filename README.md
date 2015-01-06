@@ -45,6 +45,7 @@ player = SteamWebApi::Player(player_steam_id)
 data = player.owned_games
 data.count # how many games user posses (integer)
 data.games # list of user's games
+data.success # boolean value indicates if request was succesful
 
 # game datails
 game = data.games.first
@@ -76,7 +77,6 @@ data.game_name # game name
 data.achievements # list of achievements
 data.stats # list of stats
 data.success # boolean value indicates if request was succesful. If false, probably the game doesn't have stats and Steam returns 400 status
-data.error # unless nil, it contains error message for request
 
 achievement = data.achievements.first
 achievement['name'] # achievement identifier
@@ -97,7 +97,6 @@ data.steam_id # user steam identifier
 data.game_name # game name
 data.achievements # list of achievements
 data.success # boolean value indicates if request was succesful. If false, probably the game doesn't have stats and Steam returns 400 status
-data.error # unless nil, it contains error message for request
 
 achievement = data.achievements.first
 achievement['apiname'] # achievement name
