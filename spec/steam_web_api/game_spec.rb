@@ -1,6 +1,12 @@
 require "spec_helper"
 
 RSpec.describe SteamWebApi::Game do
+
+	before do
+	  SteamWebApi.configure do |config|
+	  	config.api_key = ENV['STEAM_WEB_API_KEY']
+	  end
+	end
   
 	describe '.all' do
 
@@ -31,6 +37,20 @@ RSpec.describe SteamWebApi::Game do
 	  
 		it 'return lists of all games on Steam' do
 		  expect(SteamWebApi::Game.all.size).to eq 3
+		end
+
+	end
+
+	describe '#schema' do
+	  
+		it 'returns game schema' do
+		  VCR.use_cassette('game_schema') do
+		  	game = SteamWebApi::Game.new(8930)
+		  	schema = game.schema
+		  	expect(schema.name).to eq 'ValveTestApp8930'
+		  	expect(schema.version).to eq '108'
+		  	expect(schema.achievements.first).to eq({ 'name' => 'ESTEAMSTAT_TOTAL_WINS', 'defaultvalue' => 0, 'displayName' => 'Total Games Won.' })
+		  end
 		end
 
 	end

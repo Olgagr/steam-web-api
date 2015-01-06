@@ -110,7 +110,13 @@ achievement['name'] # achievement name
 achievement['description'] # achievement description
 ```
 
+### Game
 
+**Get list of all games** (this end-point is not described in official documentation)
+
+```ruby
+games = SteamWebApi::Game.all
+```
 
 
 ## Contributing
