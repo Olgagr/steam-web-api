@@ -1,7 +1,9 @@
+require "json"
 require "steam_web_api/version"
 require "steam_web_api/configuration"
 require "steam_web_api/base"
 require "steam_web_api/player"
+require "steam_web_api/game"
 
 begin
 	require "byebug"
