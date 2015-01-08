@@ -21,7 +21,7 @@ module SteamWebApi
 			response = get('/ISteamUserStats/GetSchemaForGame/v2', appid: game_id, key: SteamWebApi.config.api_key)
 			if response.status === 200
 				data = JSON.parse(response.body)['game']
-				OpenStruct.new(name: data['gameName'], version: data['gameVersion'], achievements: data['availableGameStats']['stats'], stats: data['availableGameStats']['stats'])
+				OpenStruct.new(name: data['gameName'], version: data['gameVersion'], achievements: data['availableGameStats']['achievements'], stats: data['availableGameStats']['stats'])
 			else
 				OpenStruct.new(name: nil, version: nil, achievements: [])
 			end	
