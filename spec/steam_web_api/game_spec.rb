@@ -2,6 +2,8 @@ require "spec_helper"
 
 RSpec.describe SteamWebApi::Game do
 
+	let(:game) { SteamWebApi::Game.new(8930) }
+
 	before do
 	  SteamWebApi.configure do |config|
 	  	config.api_key = ENV['STEAM_WEB_API_KEY']
@@ -45,7 +47,6 @@ RSpec.describe SteamWebApi::Game do
 	  
 		it 'returns game schema' do
 		  VCR.use_cassette('game_schema') do
-		  	game = SteamWebApi::Game.new(8930)
 		  	schema = game.schema
 		  	expect(schema.name).to eq 'ValveTestApp8930'
 		  	expect(schema.version).to eq '108'
@@ -70,6 +71,37 @@ RSpec.describe SteamWebApi::Game do
 		  	expect(schema.success).to be true
 		  end
 		end
+
+	end
+
+	describe '#achievement_percentages' do
+
+		context 'when the response is successful' do
+		 	
+			it 'returns list of achievements with global percentage stats' do
+			  VCR.use_cassette('game_achievement_percentages') do
+			  	data = game.achievement_percentages
+			  	expect(data.achievements.first['name']).to eq 'ACHIEVEMENT_ANCIENT_RUIN'
+			  	expect(data.achievements.first['percent']).to eq 76.74992370605469
+			  	expect(data.success).to be true 
+			  end
+			end
+
+		end
+	  
+	  context 'when the response is not successful' do
+	    
+	  	it 'returns object with attribute success equals false and empty list' do
+	  	  VCR.use_cassette('game_achievement_percentages_error') do
+	  	  	game = SteamWebApi::Game.new('non-existing')
+	  	  	data = game.achievement_percentages
+	  	  	expect(data.success).to be false
+	  	  	expect(data.achievements).to be_empty 
+	  	  end
+	  	end
+
+	  end
+		
 
 	end
 

@@ -19,12 +19,22 @@ module SteamWebApi
 
 		def schema
 			response = get('/ISteamUserStats/GetSchemaForGame/v2', appid: game_id, key: SteamWebApi.config.api_key)
-			if response.status === 200
+			if response.status == 200
 				data = JSON.parse(response.body)['game']
 				OpenStruct.new(name: data['gameName'], version: data['gameVersion'], achievements: data['availableGameStats']['achievements'], stats: data['availableGameStats']['stats'], success: true)
 			else
-				OpenStruct.new(name: nil, version: nil, achievements: [], success: false)
+				OpenStruct.new(achievements: [], stats: [], success: false)
 			end	
+		end
+
+		def achievement_percentages
+			response = get('/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002', gameid: game_id)
+			if response.status == 200
+				data = JSON.parse(response.body)['achievementpercentages']
+				OpenStruct.new(achievements: data['achievements'], success: true)
+			else	
+				OpenStruct.new(achievements: [], success: false)
+			end 
 		end
 
 	end

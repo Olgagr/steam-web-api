@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002?format=json&gameid=non-existing
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Date:
+      - Thu, 08 Jan 2015 05:48:21 GMT
+      Expires:
+      - Thu, 08 Jan 2015 05:48:21 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '4'
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+
+        }
+    http_version: 
+  recorded_at: Thu, 08 Jan 2015 05:48:21 GMT
+recorded_with: VCR 2.9.3

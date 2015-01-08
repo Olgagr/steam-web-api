@@ -25,7 +25,7 @@ module SteamWebApi
 				data = JSON.parse(response.body)['playerstats']
 				OpenStruct.new(steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], stats: data['stats'], success: true)
 			else
-				OpenStruct.new(steam_id: nil, game_name: nil, achievements: [], stats: [], success: false)		
+				OpenStruct.new(achievements: [], stats: [], success: false)		
 			end
 		end
 
@@ -35,7 +35,7 @@ module SteamWebApi
 			if response.status == 200
 				OpenStruct.new(steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], success: data['success'])
 			else
-				OpenStruct.new(steam_id: nil, game_name: nil, achievements: [], success: false)
+				OpenStruct.new(achievements: [], success: false)
 			end
 		end
 
