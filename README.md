@@ -37,7 +37,7 @@ This is better not to include API key as plain text in you repository. For bette
 
 ### Player
 
-**Get list of owned games** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29). To make it possible to make this API call, you need to have API key for your app and steam identifier of the Steam user.
+**Get list of owned games** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
 # player_steam_id - this is a Steam identifier for user
@@ -66,7 +66,7 @@ game['img_logo_url'] # filename of game logo
 game['has_community_visible_stats'] # indicates there is a stats page with achievements or other game stats available for this game
 ```
 
-**Get user stats for game** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetUserStatsForGame_.28v0002.29). To make it possible to make this API call, you need to have API key for your app and steam identifier of the Steam user.
+**Get user stats for game** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetUserStatsForGame_.28v0002.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
 player = SteamWebApi::Player(player_steam_id)
@@ -87,7 +87,7 @@ stat['name']
 stat['value'] # integer
 ```
 
-**Get user achievements for game** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerAchievements_.28v0001.29). To make it possible to make this API call, you need to have API key for your app and steam identifier of the Steam user.
+**Get user achievements for game** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerAchievements_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
 player = SteamWebApi::Player(player_steam_id)
@@ -116,6 +116,33 @@ achievement['description'] # achievement description
 
 ```ruby
 games = SteamWebApi::Game.all
+```
+
+**Get game schema** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetSchemaForGame_.28v2.29). To make this API call, you need to have API key for your app.
+
+```ruby
+game = SteamWebApi::Game(game_id)
+schema = game.schema
+
+schema.name # game name 
+schema.version # game version
+schema.achievements # lists of achievements
+schema.stats # list of stats
+schema.success # boolean value indicates if request was succesful
+
+achievement = schema.achievements.first
+achievement['name']
+achievement['defaultvalue']
+achievement['displayName']
+achievement['hidden'] # integer
+achievement['description']
+achievement['icon']
+achievement['icongray']
+
+stats = schema.stats.first
+stats['name']
+stats['defaultvalue']
+stats['displayName']
 ```
 
 
