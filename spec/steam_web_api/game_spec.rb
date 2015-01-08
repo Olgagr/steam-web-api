@@ -67,6 +67,7 @@ RSpec.describe SteamWebApi::Game do
 						"displayName" => "Total Games Won."
 		  		}
 		  	) 
+		  	expect(schema.success).to be true
 		  end
 		end
 
