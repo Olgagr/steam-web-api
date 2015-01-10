@@ -145,6 +145,21 @@ stats['defaultvalue']
 stats['displayName']
 ```
 
+**Get list of global game achievements in percentage** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetGlobalAchievementPercentagesForApp_.28v0002.29)
+
+```ruby
+game = SteamWebApi::Game(game_id)
+data = game.achievement_percentages
+
+data.achievements # list of achievements
+data.success # boolean value indicates if request was succesful
+
+achievement = data.achievements.first
+achievement['name']
+achievement['percent']
+```
+
+
 
 ## Contributing
 
