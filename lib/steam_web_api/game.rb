@@ -37,6 +37,16 @@ module SteamWebApi
 			end 
 		end
 
+		def news(count: 3, max_length: 300)
+			response = get('/ISteamNews/GetNewsForApp/v0002', appid: game_id, count: count, maxlength: max_length)
+			if response.status == 200
+				data = JSON.parse(response.body)['appnews']
+				OpenStruct.new(app_id: data['appid'], news_items: data['newsitems'], success: true)
+			else
+				OpenStruct.new(news_items: [], success: false)
+			end
+		end
+
 	end
 	
 end

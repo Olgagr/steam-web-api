@@ -3,6 +3,7 @@ require "spec_helper"
 RSpec.describe SteamWebApi::Game do
 
 	let(:game) { SteamWebApi::Game.new(8930) }
+	let(:non_existing_game) { SteamWebApi::Game.new('non-existing') }
 
 	before do
 	  SteamWebApi.configure do |config|
@@ -93,8 +94,7 @@ RSpec.describe SteamWebApi::Game do
 	    
 	  	it 'returns object with attribute success equals false and empty list' do
 	  	  VCR.use_cassette('game_achievement_percentages_error') do
-	  	  	game = SteamWebApi::Game.new('non-existing')
-	  	  	data = game.achievement_percentages
+	  	  	data = non_existing_game.achievement_percentages
 	  	  	expect(data.success).to be false
 	  	  	expect(data.achievements).to be_empty 
 	  	  end
@@ -104,5 +104,58 @@ RSpec.describe SteamWebApi::Game do
 		
 
 	end
+
+	describe '#news' do
+	  
+		context 'when response is successful' do
+		  
+			it 'returns list of news' do
+			  VCR.use_cassette('game_news_success') do
+			  	data = game.news(count: 4)
+			  	expect(data.news_items.size).to eq 4
+			  	expect(data.app_id).to eq 8930
+			  	expect(data.success).to be true   
+			  end
+			end
+
+		end
+
+		context 'when response is not successful' do
+		  
+			it 'returns object with attribute success equals false and empty list' do
+			  VCR.use_cassette('game_news_error') do
+			  	data = non_existing_game.news
+			  	expect(data.success).to be false
+			  	expect(data.news_items).to be_empty
+			  end
+			end
+
+		end
+
+	end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 end

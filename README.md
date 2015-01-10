@@ -1,6 +1,6 @@
 # SteamWebApi
 
-This is gem that it makes trivial to use Steam Web API. It supports all methods listed here: https://developer.valvesoftware.com/wiki/Steam_Web_API
+This is gem that makes trivial to use Steam Web API. It supports all methods listed here: https://developer.valvesoftware.com/wiki/Steam_Web_API
 
 ## Installation
 
@@ -157,6 +157,33 @@ data.success # boolean value indicates if request was succesful
 achievement = data.achievements.first
 achievement['name']
 achievement['percent']
+```
+
+**Get list of news** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetNewsForApp_.28v0002.29)
+
+```ruby
+game = SteamWebApi::Game(game_id)
+news = game.news
+
+news.app_id # game id
+news.news_items # news list
+news.success # boolean value indicates if request was succesful
+
+first_news = news.news_items.first
+first_news['gid'] # string
+first_news['title']
+first_news['url']
+first_news['is_external_url']
+first_news['author']
+first_news['contents']
+first_news['feedlabel']
+first_news['date']
+first_news['feedname']
+
+# additional options
+# 1. count - default 3, how many news should be retured
+# 2. max_length - default 300, how many characters news content should contain
+data = game.news(count: 10, max_length: 1000)
 ```
 
 
