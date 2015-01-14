@@ -8,6 +8,26 @@ module SteamWebApi
 			@steam_id = steam_id
 		end
 
+		class << self
+
+			def summary(*ids)
+				response = Faraday.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002', summary_options(ids))
+				if response.status == 200
+					data = JSON.parse(response.body)['response']
+					OpenStruct.new(players: data['players'], success: true)
+				else
+					OpenStruct.new(players: [], success: false)
+				end
+			end
+
+			private
+
+			def summary_options(*ids)
+				{ key: SteamWebApi.config.api_key, steamids: ids.join(',') }
+			end
+
+		end
+
 		# @todo check what response is for user with any game
 		def owned_games(options={})
 			response = get('/IPlayerService/GetOwnedGames/v0001', owned_games_options(options))
@@ -36,6 +56,15 @@ module SteamWebApi
 				OpenStruct.new(steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], success: data['success'])
 			else
 				OpenStruct.new(achievements: [], success: false)
+			end
+		end
+
+		def summary
+			data = self.class.summary(steam_id)
+			if(data.success && data.players.size > 0)
+				OpenStruct.new(profile: data.players.first, success: true)
+			else
+				OpenStruct.new(profile: {}, success: false)
 			end
 		end
 

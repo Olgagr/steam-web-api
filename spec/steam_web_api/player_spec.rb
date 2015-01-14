@@ -3,6 +3,7 @@ require "spec_helper"
 RSpec.describe SteamWebApi::Player do
 
 	let(:player) { SteamWebApi::Player.new('76561198046174695') }
+	let(:player_2) { SteamWebApi::Player.new('76561197960435530') }
 
 	before do
 	  SteamWebApi.configure do |config|
@@ -96,6 +97,81 @@ RSpec.describe SteamWebApi::Player do
 
 		end
 	  
+
+	end
+
+	describe '.summary' do
+	  
+		context 'when response is successful' do
+		  
+			it 'returns profile information for players' do
+				VCR.use_cassette('player_summary') do
+					data = SteamWebApi::Player.summary(player.steam_id, player_2.steam_id)
+					first_player = data.players.first
+					second_player = data.players[1]
+					expect(first_player['steamid']).to eq '76561198046174695'
+					expect(first_player['personaname']).to eq 'gravin79'
+					expect(first_player['realname']).to eq 'GTomasz'     
+					expect(second_player['steamid']).to eq '76561197960435530'
+					expect(second_player['realname']).to eq 'Robin Walker'
+					expect(second_player['personaname']).to eq 'Robin'
+				end		  
+			end
+
+		end
+
+		context 'when response is not successful' do
+
+			before do
+			  SteamWebApi.configure do |config|
+			  	config.api_key = 'invalid'
+			  end
+			end
+		  
+			it 'returns object with attribute success equals false and empty list' do
+			  VCR.use_cassette('player_summary_error') do
+			  	data = SteamWebApi::Player.summary(player.steam_id, player_2.steam_id)
+			  	expect(data.players.size).to eq 0
+			  	expect(data.success).to be false
+			  end
+			end
+
+		end
+
+	end
+
+	describe '#summary' do
+
+		context 'when response is successful' do
+		  
+			it 'returns profile information for single player' do
+				VCR.use_cassette('player_single_summary') do
+					data = player.summary
+					expect(data.profile['steamid']).to eq '76561198046174695'
+					expect(data.profile['personaname']).to eq 'gravin79'
+					expect(data.profile['realname']).to eq 'GTomasz'
+				end  
+			end
+
+		end
+
+		context 'when response is not successful' do
+		  
+			before do
+			  SteamWebApi.configure do |config|
+			  	config.api_key = 'invalid'
+			  end
+			end
+
+			it 'returns object with empty profile hash and attribute success equals false' do
+			  VCR.use_cassette('player_single_summary_error') do
+			  	data = player.summary
+			  	expect(data.success).to be false
+			  	expect(data.profile).to be {}  
+			  end
+			end
+
+		end
 
 	end
 

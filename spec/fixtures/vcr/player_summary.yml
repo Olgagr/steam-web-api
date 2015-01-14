@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002?key=<API_KEY>&steamids=76561198046174695,76561197960435530
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 14 Jan 2015 05:12:43 GMT
+      Expires:
+      - Wed, 14 Jan 2015 05:12:43 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '1859'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"response\": {\n\t\t\"players\": [\n\t\t\t{\n\t\t\t\t\"steamid\":
+        \"76561198046174695\",\n\t\t\t\t\"communityvisibilitystate\": 3,\n\t\t\t\t\"profilestate\":
+        1,\n\t\t\t\t\"personaname\": \"gravin79\",\n\t\t\t\t\"lastlogoff\": 1421192890,\n\t\t\t\t\"commentpermission\":
+        1,\n\t\t\t\t\"profileurl\": \"http://steamcommunity.com/profiles/76561198046174695/\",\n\t\t\t\t\"avatar\":
+        \"http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/7a/7aa6dcdb282e48f09a67b25f791493d779aa3311.jpg\",\n\t\t\t\t\"avatarmedium\":
+        \"http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/7a/7aa6dcdb282e48f09a67b25f791493d779aa3311_medium.jpg\",\n\t\t\t\t\"avatarfull\":
+        \"http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/7a/7aa6dcdb282e48f09a67b25f791493d779aa3311_full.jpg\",\n\t\t\t\t\"personastate\":
+        0,\n\t\t\t\t\"realname\": \"GTomasz\",\n\t\t\t\t\"primaryclanid\": \"103582791433775490\",\n\t\t\t\t\"timecreated\":
+        1312107940,\n\t\t\t\t\"personastateflags\": 0,\n\t\t\t\t\"loccountrycode\":
+        \"PL\",\n\t\t\t\t\"locstatecode\": \"67\",\n\t\t\t\t\"loccityid\": 36018\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"steamid\":
+        \"76561197960435530\",\n\t\t\t\t\"communityvisibilitystate\": 3,\n\t\t\t\t\"profilestate\":
+        1,\n\t\t\t\t\"personaname\": \"Robin\",\n\t\t\t\t\"lastlogoff\": 1421176474,\n\t\t\t\t\"profileurl\":
+        \"http://steamcommunity.com/id/robinwalker/\",\n\t\t\t\t\"avatar\": \"http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/f1/f1dd60a188883caf82d0cbfccfe6aba0af1732d4.jpg\",\n\t\t\t\t\"avatarmedium\":
+        \"http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/f1/f1dd60a188883caf82d0cbfccfe6aba0af1732d4_medium.jpg\",\n\t\t\t\t\"avatarfull\":
+        \"http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/f1/f1dd60a188883caf82d0cbfccfe6aba0af1732d4_full.jpg\",\n\t\t\t\t\"personastate\":
+        0,\n\t\t\t\t\"realname\": \"Robin Walker\",\n\t\t\t\t\"primaryclanid\": \"103582791429521412\",\n\t\t\t\t\"timecreated\":
+        1063407589,\n\t\t\t\t\"personastateflags\": 0,\n\t\t\t\t\"loccountrycode\":
+        \"US\",\n\t\t\t\t\"locstatecode\": \"WA\",\n\t\t\t\t\"loccityid\": 3961\n\t\t\t}\n\t\t]\n\t\t\n\t}\n}"
+    http_version: 
+  recorded_at: Wed, 14 Jan 2015 05:12:43 GMT
+recorded_with: VCR 2.9.3
