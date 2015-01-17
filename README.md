@@ -45,7 +45,7 @@ player = SteamWebApi::Player(player_steam_id)
 data = player.owned_games
 data.count # how many games user posses (integer)
 data.games # list of user's games
-data.success # boolean value indicates if request was succesful
+data.success # boolean value indicates if response was succesful
 
 # game datails
 game = data.games.first
@@ -76,7 +76,7 @@ data.steam_id # user steam identifier
 data.game_name # game name
 data.achievements # list of achievements
 data.stats # list of stats
-data.success # boolean value indicates if request was succesful. If false, probably the game doesn't have stats and Steam returns 400 status
+data.success # boolean value indicates if response was succesful. If false, probably the game doesn't have stats and Steam returns 400 status
 
 achievement = data.achievements.first
 achievement['name'] # achievement identifier
@@ -96,7 +96,7 @@ data = player.achievements(game_id)
 data.steam_id # user steam identifier
 data.game_name # game name
 data.achievements # list of achievements
-data.success # boolean value indicates if request was succesful. If false, probably the game doesn't have stats and Steam returns 400 status
+data.success # boolean value indicates if response was succesful. If false, probably the game doesn't have stats and Steam returns 400 status
 
 achievement = data.achievements.first
 achievement['apiname'] # achievement name
@@ -115,7 +115,7 @@ achievement['description'] # achievement description
 ```ruby
 data = SteamWebApi::Player.summary(player.steam_id, player_2.steam_id)
 data.players # list of account summeries
-data.success # boolean value indicates if request was succesful
+data.success # boolean value indicates if response was succesful
 
 first_player = data.players.first
 first_player['steamid']
@@ -145,7 +145,7 @@ first_player['loccityid']
 player = SteamWebApi::Player.new(steam_id)
 data = player.summary
 data.profile # account summery
-data.success # boolean value indicates if request was succesful
+data.success # boolean value indicates if response was succesful
 
 data.profile['steamid']
 data.profile['communityvisibilitystate']
@@ -174,7 +174,7 @@ data.profile['loccityid']
 player = SteamWebApi::Player.new(steam_id)
 data = player.friends
 data.friends # list of friends
-data.success # boolean value indicates if request was succesful
+data.success # boolean value indicates if response was succesful
 
 friend = data.friends.first
 friend['steamid']
@@ -193,7 +193,7 @@ player = SteamWebApi::Player.new(steam_id)
 data = player.recently_played_games
 data.games # list of games
 data.total_count
-data.success # boolean value indicates if request was succesful
+data.success # boolean value indicates if response was succesful
 
 game = data.games.first
 game['appid']
@@ -214,7 +214,23 @@ player.recently_played_games(2)
 player = SteamWebApi::Player.new(steam_id)
 data = player.playing_shared_game(game_id)
 data.lender_steamid # string, steam id of game owner
-data.success  # boolean value indicates if request was succesful
+data.success  # boolean value indicates if response was succesful
+```
+
+**Get list of bans for list of players** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerBans_.28v1.29).  To make this API call, you need to have API key.
+
+```ruby
+data = SteamWebApi::Player.bans(player_1.steam_id, player_2.steam_id)
+data.players # list of bans info for given players
+data.success # boolean value indicates if response was succesful
+
+bans = data.players.first
+bans['SteamId']
+bans['CommunityBanned'] # boolean
+bans['VACBanned'] # boolean
+bans['NumberOfVACBans'] # integer
+bans['DaysSinceLastBan'] # integer
+bans['EconomyBan'] # string, for example 'none'
 ```
 
 ### Game
@@ -235,7 +251,7 @@ schema.name # game name
 schema.version # game version
 schema.achievements # lists of achievements
 schema.stats # list of stats
-schema.success # boolean value indicates if request was succesful
+schema.success # boolean value indicates if response was succesful
 
 achievement = schema.achievements.first
 achievement['name']
@@ -259,7 +275,7 @@ game = SteamWebApi::Game(game_id)
 data = game.achievement_percentages
 
 data.achievements # list of achievements
-data.success # boolean value indicates if request was succesful
+data.success # boolean value indicates if response was succesful
 
 achievement = data.achievements.first
 achievement['name']
@@ -274,7 +290,7 @@ news = game.news
 
 news.app_id # game id
 news.news_items # news list
-news.success # boolean value indicates if request was succesful
+news.success # boolean value indicates if response was succesful
 
 first_news = news.news_items.first
 first_news['gid'] # string
