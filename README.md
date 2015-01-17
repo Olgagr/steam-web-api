@@ -238,7 +238,13 @@ bans['EconomyBan'] # string, for example 'none'
 **Get list of all games** (this end-point is not described in official documentation)
 
 ```ruby
-games = SteamWebApi::Game.all
+data = SteamWebApi::Game.all
+data.games
+data.success # boolean value indicates if response was succesful
+
+game = data.games.first
+game['appid'] # game id
+game['name']
 ```
 
 **Get game schema** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetSchemaForGame_.28v2.29). To make this API call, you need to have API key for your app.

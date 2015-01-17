@@ -39,7 +39,9 @@ RSpec.describe SteamWebApi::Game do
 		end
 	  
 		it 'return lists of all games on Steam' do
-		  expect(SteamWebApi::Game.all.size).to eq 3
+			data = SteamWebApi::Game.all
+			expect(data.success).to be true
+			expect(data.games.size).to eq 3
 		end
 
 	end
