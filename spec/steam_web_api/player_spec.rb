@@ -209,4 +209,42 @@ RSpec.describe SteamWebApi::Player do
 
 	end
 
+	describe '#recently_played_games' do
+	  
+		context 'when response is successful' do
+		  
+			it 'returns list of recently played games' do
+				VCR.use_cassette('player_recently_played_games') do
+				  data = player.recently_played_games
+				  expect(data.games).not_to be_empty
+				  expect(data.success).to be true
+				  expect(data.total_count).to eq 4
+
+				  game = data.games.first
+				  expect(game['appid']).to eq 208400
+				  expect(game['name']).to eq 'Avernum: Escape From the Pit'
+				  expect(game['playtime_2weeks']).to eq 2485
+				  expect(game['playtime_forever']).to eq 3617
+				  expect(game['img_icon_url']).to eq '6b931adb3c4af3fc2498dacafc3a104f03682d1a'
+				  expect(game['img_logo_url']).to eq '63992c2df9af7a83c8a4a173675af6e7554164ec'    
+				end
+			end
+
+		end
+
+		context 'when response is not successful' do
+		  
+			it 'returns empty list of games and attribute success equals false' do
+				VCR.use_cassette('player_recently_played_games_error') do
+					data = player_non_existing.recently_played_games
+					expect(data.success).to be false
+					expect(data.games).to be_empty
+					expect(data.total_count).to eq 0 
+				end
+			end
+
+		end
+
+	end
+
 end

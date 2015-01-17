@@ -78,6 +78,16 @@ module SteamWebApi
 			end
 		end
 
+		def recently_played_games(count=nil)
+			response = get('/IPlayerService/GetRecentlyPlayedGames/v0001', recent_games_options(count))
+			if response.status == 200
+				data = JSON.parse(response.body)['response']
+				OpenStruct.new(games: data['games'], total_count: data['total_count'], success: true)
+			else
+				OpenStruct.new(games: [], total_count: 0, success: false)
+			end
+		end
+
 		private
 
 		def owned_games_options(options)
@@ -95,6 +105,10 @@ module SteamWebApi
 
 		def friends_list_options(relationship)
 			{ key: SteamWebApi.config.api_key, steamid: steam_id, relationship: relationship }
+		end
+
+		def recent_games_options(count)
+			{ key: SteamWebApi.config.api_key, steamid: steam_id, count: count }	
 		end
 		
 	end

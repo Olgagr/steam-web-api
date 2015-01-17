@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001?count=&format=json&key=<API_KEY>&steamid=76561198046174695
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Eresult:
+      - '1'
+      Date:
+      - Sat, 17 Jan 2015 06:46:12 GMT
+      Expires:
+      - Sat, 17 Jan 2015 06:46:12 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '1103'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"response\": {\n\t\t\"total_count\": 4,\n\t\t\"games\": [\n\t\t\t{\n\t\t\t\t\"appid\":
+        208400,\n\t\t\t\t\"name\": \"Avernum: Escape From the Pit\",\n\t\t\t\t\"playtime_2weeks\":
+        2485,\n\t\t\t\t\"playtime_forever\": 3617,\n\t\t\t\t\"img_icon_url\": \"6b931adb3c4af3fc2498dacafc3a104f03682d1a\",\n\t\t\t\t\"img_logo_url\":
+        \"63992c2df9af7a83c8a4a173675af6e7554164ec\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"appid\":
+        214950,\n\t\t\t\t\"name\": \"Total War: ROME II - Emperor Edition\",\n\t\t\t\t\"playtime_2weeks\":
+        1882,\n\t\t\t\t\"playtime_forever\": 11482,\n\t\t\t\t\"img_icon_url\": \"08ae0b3454bfe8e7ae9038331b27629667119a24\",\n\t\t\t\t\"img_logo_url\":
+        \"3d7288fc5fd2d84036845fcc052e18374fcc6ccd\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"appid\":
+        205990,\n\t\t\t\t\"name\": \"Warlock 2: the Exiled\",\n\t\t\t\t\"playtime_2weeks\":
+        939,\n\t\t\t\t\"playtime_forever\": 7798,\n\t\t\t\t\"img_icon_url\": \"8663e871f631cef5352b8c2d4d299c8c5eb024e9\",\n\t\t\t\t\"img_logo_url\":
+        \"7282ec4f1f7e1f3ed1ca7168aa7afd2e89a768a3\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"appid\":
+        216890,\n\t\t\t\t\"name\": \"Blood Bowl: Chaos Edition\",\n\t\t\t\t\"playtime_2weeks\":
+        7,\n\t\t\t\t\"playtime_forever\": 7203,\n\t\t\t\t\"img_icon_url\": \"b119ef882d62135be38100402b03fa13aea7e9ce\",\n\t\t\t\t\"img_logo_url\":
+        \"91c61a36b5466a42f517980d244132627641bf84\"\n\t\t\t}\n\t\t]\n\t\t\n\t}\n}"
+    http_version: 
+  recorded_at: Sat, 17 Jan 2015 06:46:12 GMT
+recorded_with: VCR 2.9.3
