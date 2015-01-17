@@ -11,7 +11,7 @@ module SteamWebApi
 		class << self
 
 			def summary(*ids)
-				response = Faraday.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002', summary_options(ids))
+				response = Faraday.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002', options(ids))
 				if response.status == 200
 					data = JSON.parse(response.body)['response']
 					OpenStruct.new(players: data['players'], success: true)
@@ -20,9 +20,19 @@ module SteamWebApi
 				end
 			end
 
+			def bans(*ids)
+				response = Faraday.get('http://api.steampowered.com/ISteamUser/GetPlayerBans/v1', options(ids))
+				if response.status == 200
+					data = JSON.parse(response.body)
+					OpenStruct.new(players: data['players'], success: true)
+				else
+					OpenStruct.new(players: [], success: false)
+				end
+			end
+
 			private
 
-			def summary_options(*ids)
+			def options(*ids)
 				{ key: SteamWebApi.config.api_key, steamids: ids.join(',') }
 			end
 
