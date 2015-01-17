@@ -88,6 +88,16 @@ module SteamWebApi
 			end
 		end
 
+		def playing_shared_game(app_id)
+			response = get('/IPlayerService/IsPlayingSharedGame/v0001', shared_game_options(app_id))
+			if response.status == 200
+				data = JSON.parse(response.body)['response']
+				OpenStruct.new(lender_steamid: data['lender_steamid'], success: true)
+			else
+				OpenStruct.new(success: false)
+			end
+		end
+
 		private
 
 		def owned_games_options(options)
@@ -109,6 +119,10 @@ module SteamWebApi
 
 		def recent_games_options(count)
 			{ key: SteamWebApi.config.api_key, steamid: steam_id, count: count }	
+		end
+
+		def shared_game_options(app_id)
+			{ key: SteamWebApi.config.api_key, steamid: steam_id, appid_playing: app_id }
 		end
 		
 	end

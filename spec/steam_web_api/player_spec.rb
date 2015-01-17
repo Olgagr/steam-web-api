@@ -258,4 +258,31 @@ RSpec.describe SteamWebApi::Player do
 
 	end
 
+	describe '#playing_shared_game' do
+	  
+		context 'when response is successful' do
+		  
+			it 'returns the original owner\'s SteamID' do
+				VCR.use_cassette('player_playing_shared_game') do
+				  data = player.playing_shared_game(240)
+				  expect(data.lender_steamid).to eq '0'
+				  expect(data.success).to be true 
+				end
+			end
+
+		end
+
+		context 'when response is not successful' do
+		  
+			it 'returns object with success attribute equals false' do
+			  VCR.use_cassette('player_playing_shared_game_error') do
+			  	data = player_non_existing.playing_shared_game(240)
+			  	expect(data.success).to be false
+			  end
+			end
+
+		end
+
+	end
+
 end
