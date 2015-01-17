@@ -230,6 +230,17 @@ RSpec.describe SteamWebApi::Player do
 				end
 			end
 
+			context 'when count option is given' do
+			  
+				it 'returns limited list of games' do
+					VCR.use_cassette('player_recently_played_games_with_count') do
+						data = player.recently_played_games(2)
+						expect(data.games.size).to eq 2  
+					end
+				end
+
+			end
+
 		end
 
 		context 'when response is not successful' do
