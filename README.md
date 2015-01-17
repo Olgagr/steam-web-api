@@ -110,6 +110,64 @@ achievement['name'] # achievement name
 achievement['description'] # achievement description
 ```
 
+**Get accounts summaries for list of players** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0002.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+
+```ruby
+data = SteamWebApi::Player.summary(player.steam_id, player_2.steam_id)
+data.players # list of account summeries
+data.success # boolean value indicates if request was succesful
+
+first_player = data.players.first
+first_player['steamid']
+first_player['communityvisibilitystate']
+first_player['profilestate']
+first_player['personaname']
+first_player['lastlogoff']
+first_player['profileurl']
+first_player['avatar']
+first_player['avatarmedium']
+first_player['avatarfull']
+first_player['personastate']
+first_player['realname']
+first_player['primaryclanid']
+first_player['timecreated']
+first_player['personastateflags']
+first_player['gameextrainfo']
+first_player['gameid']
+first_player['loccountrycode']
+first_player['locstatecode']
+first_player['loccityid']
+```
+
+**Get account summary for single player** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0002.29). This is just more convinient method to get account summary if you already have player instance. To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+
+```ruby
+player = SteamWebApi::Player.new(steam_id)
+data = player.summary
+data.profile # account summery
+data.success # boolean value indicates if request was succesful
+
+data.profile['steamid']
+data.profile['communityvisibilitystate']
+data.profile['profilestate']
+data.profile['personaname']
+data.profile['lastlogoff']
+data.profile['profileurl']
+data.profile['avatar']
+data.profile['avatarmedium']
+data.profile['avatarfull']
+data.profile['personastate']
+data.profile['realname']
+data.profile['primaryclanid']
+data.profile['timecreated']
+data.profile['personastateflags']
+data.profile['gameextrainfo']
+data.profile['gameid']
+data.profile['loccountrycode']
+data.profile['locstatecode']
+data.profile['loccityid']
+```
+
 ### Game
 
 **Get list of all games** (this end-point is not described in official documentation)
