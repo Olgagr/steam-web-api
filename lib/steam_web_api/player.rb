@@ -68,6 +68,16 @@ module SteamWebApi
 			end
 		end
 
+		def friends(relationship='all')
+			response = get('/ISteamUser/GetFriendList/v0001', friends_list_options(relationship))
+			if response.status == 200
+				data = JSON.parse(response.body)['friendslist']
+				OpenStruct.new(friends: data['friends'], success: true)
+			else
+				OpenStruct.new(friends: [], success: false)
+			end
+		end
+
 		private
 
 		def owned_games_options(options)
@@ -81,6 +91,10 @@ module SteamWebApi
 
 		def achievements_options(game_id, options)
 			{ appid: game_id, key: SteamWebApi.config.api_key, steamid: steam_id }.merge!(options)
+		end
+
+		def friends_list_options(relationship)
+			{ key: SteamWebApi.config.api_key, steamid: steam_id, relationship: relationship }
 		end
 		
 	end

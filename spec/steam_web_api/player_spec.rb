@@ -4,6 +4,7 @@ RSpec.describe SteamWebApi::Player do
 
 	let(:player) { SteamWebApi::Player.new('76561198046174695') }
 	let(:player_2) { SteamWebApi::Player.new('76561197960435530') }
+	let(:player_non_existing) { SteamWebApi::Player.new('aaa') }
 
 	before do
 	  SteamWebApi.configure do |config|
@@ -168,6 +169,39 @@ RSpec.describe SteamWebApi::Player do
 			  	data = player.summary
 			  	expect(data.success).to be false
 			  	expect(data.profile).to be {}  
+			  end
+			end
+
+		end
+
+	end
+
+	describe '#friends' do
+
+		context 'when response is successful' do
+		  
+			it 'returns list of friends' do
+				VCR.use_cassette('player_friends') do
+					data = player.friends
+					expect(data.success).to be true
+					expect(data.friends).not_to be_empty
+
+					friend = data.friends.first
+					expect(friend['steamid']).to eq '76561197968589933'
+					expect(friend['relationship']).to eq 'friend'
+					expect(friend['friend_since']).to eq 1397319937     
+				end
+			end
+
+		end
+
+		context 'when response is not successful' do
+		  
+			it 'returns empty list of friends and attribute success equals false' do
+			  VCR.use_cassette('player_friends_error') do
+			  	data = player_non_existing.friends
+			  	expect(data.success).to be false
+			  	expect(data.friends).to be_empty  
 			  end
 			end
 

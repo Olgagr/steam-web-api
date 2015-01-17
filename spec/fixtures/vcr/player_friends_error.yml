@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.steampowered.com/ISteamUser/GetFriendList/v0001?format=json&key=<API_KEY>&relationship=all&steamid=aaa
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Content-Length:
+      - '116'
+      Content-Type:
+      - text/html; charset=UTF-8
+      Date:
+      - Sat, 17 Jan 2015 06:20:25 GMT
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - no-cache,must-revalidate
+    body:
+      encoding: UTF-8
+      string: |-
+        <html>
+        <head>
+        <title>500 Internal Server Error</title>
+        </head>
+        <body>
+        <h1>Internal Server Error</h1>
+        </body>
+        </html>
+    http_version: 
+  recorded_at: Sat, 17 Jan 2015 06:20:25 GMT
+recorded_with: VCR 2.9.3

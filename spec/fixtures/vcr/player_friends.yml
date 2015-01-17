@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.steampowered.com/ISteamUser/GetFriendList/v0001?format=json&key=<API_KEY>&relationship=all&steamid=76561198046174695
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 17 Jan 2015 06:15:54 GMT
+      Expires:
+      - Sat, 17 Jan 2015 06:15:54 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '1233'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"friendslist\": {\n\t\t\"friends\": [\n\t\t\t{\n\t\t\t\t\"steamid\":
+        \"76561197968589933\",\n\t\t\t\t\"relationship\": \"friend\",\n\t\t\t\t\"friend_since\":
+        1397319937\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"steamid\": \"76561198036812480\",\n\t\t\t\t\"relationship\":
+        \"friend\",\n\t\t\t\t\"friend_since\": 1359731326\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"steamid\":
+        \"76561198044253377\",\n\t\t\t\t\"relationship\": \"friend\",\n\t\t\t\t\"friend_since\":
+        1332186936\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"steamid\": \"76561198047048666\",\n\t\t\t\t\"relationship\":
+        \"friend\",\n\t\t\t\t\"friend_since\": 1381777255\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"steamid\":
+        \"76561198057629417\",\n\t\t\t\t\"relationship\": \"friend\",\n\t\t\t\t\"friend_since\":
+        1327516246\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"steamid\": \"76561198073945021\",\n\t\t\t\t\"relationship\":
+        \"friend\",\n\t\t\t\t\"friend_since\": 1351016785\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"steamid\":
+        \"76561198074051952\",\n\t\t\t\t\"relationship\": \"friend\",\n\t\t\t\t\"friend_since\":
+        1359392188\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"steamid\": \"76561198080110616\",\n\t\t\t\t\"relationship\":
+        \"friend\",\n\t\t\t\t\"friend_since\": 1408385608\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"steamid\":
+        \"76561198080150503\",\n\t\t\t\t\"relationship\": \"friend\",\n\t\t\t\t\"friend_since\":
+        1383327768\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"steamid\": \"76561198093098808\",\n\t\t\t\t\"relationship\":
+        \"friend\",\n\t\t\t\t\"friend_since\": 1385661956\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"steamid\":
+        \"76561198108140491\",\n\t\t\t\t\"relationship\": \"friend\",\n\t\t\t\t\"friend_since\":
+        1381247912\n\t\t\t}\n\t\t]\n\t\t\n\t}\n}"
+    http_version: 
+  recorded_at: Sat, 17 Jan 2015 06:15:54 GMT
+recorded_with: VCR 2.9.3
