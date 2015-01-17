@@ -29,7 +29,7 @@ When you have your API key, you can configure the gem:
 ```ruby
 # for Rails, you can put this code in initializer: config/initializers/steam_web_api.rb
 SteamWebApi.configure do |config|
-	config.steam_web_api_key = 'your api key'
+	config.api_key = 'your api key'
 end
 ```
 
