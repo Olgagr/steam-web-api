@@ -186,6 +186,28 @@ friend['friend_since'] # integer
 player.friends('friend')
 ```
 
+**Get list of recently played games** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetRecentlyPlayedGames_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+
+```ruby
+player = SteamWebApi::Player.new(steam_id)
+data = player.recently_played_games
+data.games # list of games
+data.total_count
+data.success # boolean value indicates if request was succesful
+
+game = data.games.first
+game['appid']
+game['name']
+game['playtime_2weeks'] # integer, number of minutes
+game['playtime_forever'] # integer, number of minutes
+game['img_icon_url']
+game['img_logo_url']
+
+# additional options
+# count: it limits returned number of games. It's nil by default
+player.recently_played_games(2)
+```
+
 
 ### Game
 
