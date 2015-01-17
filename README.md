@@ -168,6 +168,25 @@ data.profile['locstatecode']
 data.profile['loccityid']
 ```
 
+**Get player friends list** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetFriendList_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+
+```ruby
+player = SteamWebApi::Player.new(steam_id)
+data = player.friends
+data.friends # list of friends
+data.success # boolean value indicates if request was succesful
+
+friend = data.friends.first
+friend['steamid']
+friend['relationship']
+friend['friend_since'] # integer
+
+# additional options
+# relationship: all/friend. Default is 'all'
+player.friends('friend')
+```
+
+
 ### Game
 
 **Get list of all games** (this end-point is not described in official documentation)
