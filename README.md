@@ -208,6 +208,14 @@ game['img_logo_url']
 player.recently_played_games(2)
 ```
 
+**Check if player is playing shared game** (https://developer.valvesoftware.com/wiki/Steam_Web_API#IsPlayingSharedGame_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+
+```ruby
+player = SteamWebApi::Player.new(steam_id)
+data = player.playing_shared_game(game_id)
+data.lender_steamid # string, steam id of game owner
+data.success  # boolean value indicates if request was succesful
+```
 
 ### Game
 
