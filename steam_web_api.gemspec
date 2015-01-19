@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["olga.grabek@gmail.com"]
   spec.summary       = %q{This is gem that it makes trivial to use Steam Web API}
   spec.description   = %q{This is gem that it makes trivial to use Steam Web API}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/Olgagr/steam-web-api"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -21,7 +21,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.1"
-  spec.add_development_dependency "byebug", "~> 3.5"
   spec.add_development_dependency "webmock", "~> 1.20"
   spec.add_development_dependency "vcr", "~> 2.9"
   spec.add_development_dependency "dotenv", "~> 1.0"
