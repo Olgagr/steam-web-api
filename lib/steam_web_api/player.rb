@@ -71,7 +71,7 @@ module SteamWebApi
 
 		def summary
 			data = self.class.summary(steam_id)
-			if(data.success && data.players.size > 0)
+			if data.success && data.players.size > 0
 				OpenStruct.new(profile: data.players.first, success: true)
 			else
 				OpenStruct.new(profile: {}, success: false)
