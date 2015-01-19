@@ -1,22 +1,23 @@
 # SteamWebApi
 
+[![Build Status](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master)](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master)
+
 This is gem that makes trivial to use Steam Web API. It supports all methods listed here: https://developer.valvesoftware.com/wiki/Steam_Web_API
+
+## Supported Ruby version
+Gem supports Ruby: 2.0, 2.1, 2.2
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'steam_web_api'
+gem 'steam_web_api', git: 'https://github.com/Olgagr/steam-web-api.git'
 ```
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install steam_web_api
 
 ## Usage
 
