@@ -40,33 +40,18 @@ module SteamWebApi
 
 		# @todo check what response is for user with any game
 		def owned_games(options={})
-			response = get('/IPlayerService/GetOwnedGames/v0001', owned_games_options(options))
-			if response.status == 200
-				data = JSON.parse(response.body)['response']
-				OpenStruct.new(count: data['game_count'], games: data['games'], success: true)
-			else
-				OpenStruct.new(count: 0, games: [], success: false)				
-			end	
+			@response = get('/IPlayerService/GetOwnedGames/v0001', owned_games_options(options))
+			build_response('response') { |data| { count: data['game_count'], games: data['games'] } }
 		end
 
 		def stats_for_game(app_id)
-			response = get('/ISteamUserStats/GetUserStatsForGame/v0002', stats_for_game_options(app_id))
-			if response.status == 200 
-				data = JSON.parse(response.body)['playerstats']
-				OpenStruct.new(steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], stats: data['stats'], success: true)
-			else
-				OpenStruct.new(achievements: [], stats: [], success: false)		
-			end
+			@response = get('/ISteamUserStats/GetUserStatsForGame/v0002', stats_for_game_options(app_id))
+			build_response('playerstats') { |data| { steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], stats: data['stats'] } }
 		end
 
 		def achievements(app_id, options={})
-			response = get('/ISteamUserStats/GetPlayerAchievements/v0001', achievements_options(app_id, options))
-			data = JSON.parse(response.body)['playerstats']
-			if response.status == 200
-				OpenStruct.new(steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'], success: data['success'])
-			else
-				OpenStruct.new(achievements: [], success: false)
-			end
+			@response = get('/ISteamUserStats/GetPlayerAchievements/v0001', achievements_options(app_id, options))
+			build_response('playerstats') { |data| { steam_id: data['steamID'], game_name: data['gameName'], achievements: data['achievements'] } }
 		end
 
 		def summary
@@ -79,33 +64,18 @@ module SteamWebApi
 		end
 
 		def friends(relationship='all')
-			response = get('/ISteamUser/GetFriendList/v0001', friends_list_options(relationship))
-			if response.status == 200
-				data = JSON.parse(response.body)['friendslist']
-				OpenStruct.new(friends: data['friends'], success: true)
-			else
-				OpenStruct.new(friends: [], success: false)
-			end
+			@response = get('/ISteamUser/GetFriendList/v0001', friends_list_options(relationship))
+			build_response('friendslist') { |data| { friends: data['friends'] } }
 		end
 
 		def recently_played_games(count=nil)
-			response = get('/IPlayerService/GetRecentlyPlayedGames/v0001', recent_games_options(count))
-			if response.status == 200
-				data = JSON.parse(response.body)['response']
-				OpenStruct.new(games: data['games'], total_count: data['total_count'], success: true)
-			else
-				OpenStruct.new(games: [], total_count: 0, success: false)
-			end
+			@response = get('/IPlayerService/GetRecentlyPlayedGames/v0001', recent_games_options(count))
+			build_response('response') { |data| { games: data['games'], total_count: data['total_count'] } }
 		end
 
 		def playing_shared_game(app_id)
-			response = get('/IPlayerService/IsPlayingSharedGame/v0001', shared_game_options(app_id))
-			if response.status == 200
-				data = JSON.parse(response.body)['response']
-				OpenStruct.new(lender_steamid: data['lender_steamid'], success: true)
-			else
-				OpenStruct.new(success: false)
-			end
+			@response = get('/IPlayerService/IsPlayingSharedGame/v0001', shared_game_options(app_id))
+			build_response('response') { |data| { lender_steamid: data['lender_steamid'] } }
 		end
 
 		def bans

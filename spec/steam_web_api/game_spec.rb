@@ -98,7 +98,6 @@ RSpec.describe SteamWebApi::Game do
 	  	  VCR.use_cassette('game_achievement_percentages_error') do
 	  	  	data = non_existing_game.achievement_percentages
 	  	  	expect(data.success).to be false
-	  	  	expect(data.achievements).to be_empty 
 	  	  end
 	  	end
 
@@ -128,7 +127,6 @@ RSpec.describe SteamWebApi::Game do
 			  VCR.use_cassette('game_news_error') do
 			  	data = non_existing_game.news
 			  	expect(data.success).to be false
-			  	expect(data.news_items).to be_empty
 			  end
 			end
 

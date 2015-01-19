@@ -201,7 +201,6 @@ RSpec.describe SteamWebApi::Player do
 			  VCR.use_cassette('player_friends_error') do
 			  	data = player_non_existing.friends
 			  	expect(data.success).to be false
-			  	expect(data.friends).to be_empty  
 			  end
 			end
 
@@ -249,8 +248,6 @@ RSpec.describe SteamWebApi::Player do
 				VCR.use_cassette('player_recently_played_games_error') do
 					data = player_non_existing.recently_played_games
 					expect(data.success).to be false
-					expect(data.games).to be_empty
-					expect(data.total_count).to eq 0 
 				end
 			end
 
