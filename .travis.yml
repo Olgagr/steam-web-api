@@ -1,12 +1,13 @@
 language: ruby
 rvm:
-  - "2.2.0"
-  - "2.1.5"
-  - "2.0.0"
-  - "1.9.3"
-
-script: rake spec	
-
+- 2.2.0
+- 2.1.5
+- 2.0.0
+- 1.9.3
+env:
+  global:
+    secure: pkwefTKxtSJkhlZ2eWznXJFkQ7l5UPrYI6tWKayXP5EpvMUchedKf0nwK3oeF40xb3rAu5IGx+5E7wZvu0jNPDpny78XfMHBZ/vXIdFBSeT0pX+Bq61zptXjyUQAoBjbIbi2Xod27Ukh1qLa1b54lOs4Qpd6wMEAWzhz5FAzp9s=
+script: rake spec
 branches:
   only:
-    - master
+  - master
