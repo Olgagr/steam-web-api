@@ -217,7 +217,7 @@ data.lender_steamid # string, steam id of game owner
 data.success  # boolean value indicates if response was succesful
 ```
 
-**Get list of bans for list of players** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerBans_.28v1.29).  To make this API call, you need to have API key.
+**Get list of bans for list of players** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerBans_.28v1.29). To make this API call, you need to have API key.
 
 ```ruby
 data = SteamWebApi::Player.bans(player_1.steam_id, player_2.steam_id)
@@ -232,6 +232,22 @@ bans['NumberOfVACBans'] # integer
 bans['DaysSinceLastBan'] # integer
 bans['EconomyBan'] # string, for example 'none'
 ```
+
+**Get list of bans for single player** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerBans_.28v1.29). This is just more convinient method to get player bans if you already have player instance. To make this API call, you need to have API key.
+
+```ruby
+player = SteamWebApi::Player.new(steam_id)
+data = player.bans
+data.success # boolean value indicates if response was succesful
+data.bans['SteamId']
+data.bans['CommunityBanned'] # boolean
+data.bans['VACBanned'] # boolean
+data.bans['NumberOfVACBans'] # integer
+data.bans['DaysSinceLastBan'] # integer
+data.bans['EconomyBan'] # string, for example 'none'
+```
+
+
 
 ### Game
 
