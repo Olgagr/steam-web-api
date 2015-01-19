@@ -108,6 +108,15 @@ module SteamWebApi
 			end
 		end
 
+		def bans
+			data = self.class.bans(steam_id)
+			if data.success && data.players.size > 0
+				OpenStruct.new(bans: data.players.first, success: true)
+			else
+				OpenStruct.new(bans: {}, success: false)
+			end
+		end
+
 		private
 
 		def owned_games_options(options)

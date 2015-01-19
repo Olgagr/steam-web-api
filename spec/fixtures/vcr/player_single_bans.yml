@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.steampowered.com/ISteamUser/GetPlayerBans/v1?key=<API_KEY>&steamids=76561198046174695
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 19 Jan 2015 04:45:40 GMT
+      Expires:
+      - Mon, 19 Jan 2015 04:45:40 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '192'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"players\": [\n\t\t{\n\t\t\t\"SteamId\": \"76561198046174695\",\n\t\t\t\"CommunityBanned\":
+        false,\n\t\t\t\"VACBanned\": false,\n\t\t\t\"NumberOfVACBans\": 0,\n\t\t\t\"DaysSinceLastBan\":
+        0,\n\t\t\t\"EconomyBan\": \"none\"\n\t\t}\n\t]\n\t\n}"
+    http_version: 
+  recorded_at: Mon, 19 Jan 2015 04:45:41 GMT
+recorded_with: VCR 2.9.3

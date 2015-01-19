@@ -327,4 +327,43 @@ RSpec.describe SteamWebApi::Player do
 
 	end
 
+	describe '#bans' do
+	  
+		context 'when response is successful' do
+		  
+			it 'returns info ablout single user bans' do
+			  VCR.use_cassette('player_single_bans') do
+			  	data = player.bans
+			  	expect(data.success).to be true
+			  	expect(data.bans['SteamId']).to eq '76561198046174695' 
+			  	expect(data.bans['CommunityBanned']).to be false 
+			  	expect(data.bans['VACBanned']).to be false 
+			  	expect(data.bans['NumberOfVACBans']).to eq 0 
+			  	expect(data.bans['DaysSinceLastBan']).to eq 0 
+			  	expect(data.bans['EconomyBan']).to eq 'none'
+			  end
+			end
+
+		end
+
+		context 'when response is not successful' do
+		  
+			before do
+				SteamWebApi.configure do |config|
+					config.api_key = 'invalid'
+				end  
+			end
+			
+			it 'returns object with empty bans and attribute success equals false' do
+				VCR.use_cassette('player_single_bans_error') do
+					data = player.bans
+					expect(data.success).to be false
+					expect(data.bans).to eq({}) 	  
+				end
+			end	
+
+		end
+
+	end
+
 end
