@@ -12,12 +12,7 @@ module SteamWebApi
 
 			def all
 				response = Faraday.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/')
-				if response.status == 200
-					data = JSON.parse(response.body)['applist'] 
-					OpenStruct.new(games: data['apps'], success: true)
-				else
-					OpenStruct.new(games: [], success: false)
-				end		
+				build_response(response, 'applist') { |data| { games: data['apps'] } }	
 			end
 
 		end

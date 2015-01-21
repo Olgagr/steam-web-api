@@ -132,7 +132,6 @@ RSpec.describe SteamWebApi::Player do
 			it 'returns object with attribute success equals false and empty list' do
 			  VCR.use_cassette('player_summary_error') do
 			  	data = SteamWebApi::Player.summary(player.steam_id, player_2.steam_id)
-			  	expect(data.players.size).to eq 0
 			  	expect(data.success).to be false
 			  end
 			end
@@ -168,7 +167,6 @@ RSpec.describe SteamWebApi::Player do
 			  VCR.use_cassette('player_single_summary_error') do
 			  	data = player.summary
 			  	expect(data.success).to be false
-			  	expect(data.profile).to be {}  
 			  end
 			end
 
@@ -315,7 +313,6 @@ RSpec.describe SteamWebApi::Player do
 			it 'returns object with empty players list and attribute success equals false' do
 				VCR.use_cassette('player_bans_error') do
 					data = SteamWebApi::Player.bans(player.steam_id, player_2.steam_id)
-					expect(data.players.size).to eq 0
 					expect(data.success).to be false
 				end
 			end
@@ -355,7 +352,6 @@ RSpec.describe SteamWebApi::Player do
 				VCR.use_cassette('player_single_bans_error') do
 					data = player.bans
 					expect(data.success).to be false
-					expect(data.bans).to eq({}) 	  
 				end
 			end	
 

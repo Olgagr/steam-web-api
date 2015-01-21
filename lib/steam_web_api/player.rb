@@ -12,22 +12,12 @@ module SteamWebApi
 
 			def summary(*ids)
 				response = Faraday.get('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002', options(ids))
-				if response.status == 200
-					data = JSON.parse(response.body)['response']
-					OpenStruct.new(players: data['players'], success: true)
-				else
-					OpenStruct.new(players: [], success: false)
-				end
+				build_response(response, 'response') { |data| { players: data['players'] } }
 			end
 
 			def bans(*ids)
 				response = Faraday.get('http://api.steampowered.com/ISteamUser/GetPlayerBans/v1', options(ids))
-				if response.status == 200
-					data = JSON.parse(response.body)
-					OpenStruct.new(players: data['players'], success: true)
-				else
-					OpenStruct.new(players: [], success: false)
-				end
+				build_response(response, 'players') { |data| { players: data } }
 			end
 
 			private
@@ -38,7 +28,6 @@ module SteamWebApi
 
 		end
 
-		# @todo check what response is for user with any game
 		def owned_games(options={})
 			@response = get('/IPlayerService/GetOwnedGames/v0001', owned_games_options(options))
 			build_response('response') { |data| { count: data['game_count'], games: data['games'] } }
@@ -56,11 +45,7 @@ module SteamWebApi
 
 		def summary
 			data = self.class.summary(steam_id)
-			if data.success && data.players.size > 0
-				OpenStruct.new(profile: data.players.first, success: true)
-			else
-				OpenStruct.new(profile: {}, success: false)
-			end
+			get_first_data(data) { |data| { profile: data.players.first } }
 		end
 
 		def friends(relationship='all')
@@ -80,14 +65,18 @@ module SteamWebApi
 
 		def bans
 			data = self.class.bans(steam_id)
-			if data.success && data.players.size > 0
-				OpenStruct.new(bans: data.players.first, success: true)
-			else
-				OpenStruct.new(bans: {}, success: false)
-			end
+			get_first_data(data) { |data| { bans: data.players.first } }
 		end
 
 		private
+
+		def get_first_data(data)
+			if data.success && data.players.size > 0
+				OpenStruct.new yield(data).merge!(success: true)
+			else
+				OpenStruct.new(success: false)
+			end
+		end
 
 		def owned_games_options(options)
 			options.each { |k, v| options[k] = v ? 1 : 0 }

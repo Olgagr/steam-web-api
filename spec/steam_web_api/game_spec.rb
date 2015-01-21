@@ -134,28 +134,4 @@ RSpec.describe SteamWebApi::Game do
 
 	end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
