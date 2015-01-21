@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = SteamWebApi::VERSION
   spec.authors       = ["Olga Grabek"]
   spec.email         = ["olga.grabek@gmail.com"]
-  spec.summary       = %q{This is gem that it makes trivial to use Steam Web API}
-  spec.description   = %q{This is gem that it makes trivial to use Steam Web API}
+  spec.summary       = %q{This is a gem that makes trivial interacting with the Steam Web API}
+  spec.description   = %q{This is a gem that makes trivial interacting with the Steam Web API}
   spec.homepage      = "https://github.com/Olgagr/steam-web-api"
   spec.license       = "MIT"
 

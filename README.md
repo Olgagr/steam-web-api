@@ -2,7 +2,7 @@
 
 [![Build Status](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master)](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master) [![Code Climate](https://codeclimate.com/github/Olgagr/steam-web-api/badges/gpa.svg)](https://codeclimate.com/github/Olgagr/steam-web-api) [![Test Coverage](https://codeclimate.com/github/Olgagr/steam-web-api/badges/coverage.svg)](https://codeclimate.com/github/Olgagr/steam-web-api)
 
-This is gem that makes trivial to use Steam Web API. It supports all methods listed here: https://developer.valvesoftware.com/wiki/Steam_Web_API and [one more](#get-list-of-all-games).
+This is a gem that makes trivial interacting with the Steam Web API. It supports all methods listed here: https://developer.valvesoftware.com/wiki/Steam_Web_API and [one more](#get-list-of-all-games).
 
 ## Supported Ruby version
 
