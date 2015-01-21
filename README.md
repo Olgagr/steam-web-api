@@ -1,6 +1,6 @@
 # SteamWebApi
 
-[![Build Status](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master)](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master) [![Code Climate](https://codeclimate.com/github/Olgagr/steam-web-api/badges/gpa.svg)](https://codeclimate.com/github/Olgagr/steam-web-api) [![Test Coverage](https://codeclimate.com/github/Olgagr/steam-web-api/badges/coverage.svg)](https://codeclimate.com/github/Olgagr/steam-web-api)
+[![Build Status](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master)](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master) [![Code Climate](https://codeclimate.com/github/Olgagr/steam-web-api/badges/gpa.svg)](https://codeclimate.com/github/Olgagr/steam-web-api) [![Test Coverage](https://codeclimate.com/github/Olgagr/steam-web-api/badges/coverage.svg)](https://codeclimate.com/github/Olgagr/steam-web-api) [![Gem Version](https://badge.fury.io/rb/steam_web_api.svg)](http://badge.fury.io/rb/steam_web_api)
 
 This is a gem that makes trivial interacting with the Steam Web API. It supports all methods listed here: https://developer.valvesoftware.com/wiki/Steam_Web_API and [one more](#get-list-of-all-games).
 
@@ -13,12 +13,16 @@ Gem supports Ruby: 2.0, 2.1, 2.2
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'steam_web_api', git: 'https://github.com/Olgagr/steam-web-api.git'
+gem 'steam_web_api'
 ```
 
 And then execute:
 
     $ bundle
+
+Or run in the console:
+
+	$ gem install steam_web_api    
 
 ## Usage
 
