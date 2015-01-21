@@ -1,6 +1,6 @@
 # SteamWebApi
 
-[![Build Status](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master)](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master)
+[![Build Status](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master)](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master) [![Code Climate](https://codeclimate.com/github/Olgagr/steam-web-api/badges/gpa.svg)](https://codeclimate.com/github/Olgagr/steam-web-api)
 
 This is gem that makes trivial to use Steam Web API. It supports all methods listed here: https://developer.valvesoftware.com/wiki/Steam_Web_API
 
