@@ -10,3 +10,6 @@ script: rake spec
 branches:
   only:
   - master
+addons:
+  code_climate:
+    repo_token: d1a331f3776f02890a5adcb1188879cd886a1cb0dfe5806c5848e27ef2dd700c

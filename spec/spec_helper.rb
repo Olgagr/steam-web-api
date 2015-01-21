@@ -1,3 +1,5 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 require "dotenv"
 Dotenv.load
 require "steam_web_api"
