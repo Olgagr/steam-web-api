@@ -290,13 +290,13 @@ RSpec.describe SteamWebApi::Player do
 				  expect(data.players.size).to eq 2
 				  expect(data.success).to be true
 
-				  player = data.players.first
-				  expect(player['SteamId']).to eq '76561198046174695'
-				  expect(player['CommunityBanned']).to be false 
-				  expect(player['VACBanned']).to be false 
-				  expect(player['NumberOfVACBans']).to eq 0 
-				  expect(player['DaysSinceLastBan']).to eq 0 
-				  expect(player['EconomyBan']).to eq "none" 
+				  first_player = data.players.first
+				  expect(first_player['SteamId']).to eq '76561198046174695'
+				  expect(first_player['CommunityBanned']).to be false 
+				  expect(first_player['VACBanned']).to be false 
+				  expect(first_player['NumberOfVACBans']).to eq 0 
+				  expect(first_player['DaysSinceLastBan']).to eq 0 
+				  expect(first_player['EconomyBan']).to eq "none" 
 				end
 			end
 

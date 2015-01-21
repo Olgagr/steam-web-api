@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe SteamWebApi do
 
-	let(:base) { base = SteamWebApi::Base.new }
+	let(:base) { SteamWebApi::Base.new }
 	let(:raw_body) { '{"response":{"someData":"hello","numbers":["1", "2", "3"],"objects":[{"a":1},{"b":2}]}}' }
 	let(:response) { OpenStruct.new(status: 200, body: raw_body) }
 	let(:response_not_successful) { OpenStruct.new(status: 403, body: '{}') }
