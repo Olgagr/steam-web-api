@@ -1,10 +1,11 @@
 # SteamWebApi
 
-[![Build Status](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master)](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master) [![Code Climate](https://codeclimate.com/github/Olgagr/steam-web-api/badges/gpa.svg)](https://codeclimate.com/github/Olgagr/steam-web-api)
+[![Build Status](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master)](https://api.travis-ci.org/Olgagr/steam-web-api.svg?branch=master) [![Code Climate](https://codeclimate.com/github/Olgagr/steam-web-api/badges/gpa.svg)](https://codeclimate.com/github/Olgagr/steam-web-api) [![Test Coverage](https://codeclimate.com/github/Olgagr/steam-web-api/badges/coverage.svg)](https://codeclimate.com/github/Olgagr/steam-web-api)
 
-This is gem that makes trivial to use Steam Web API. It supports all methods listed here: https://developer.valvesoftware.com/wiki/Steam_Web_API
+This is gem that makes trivial to use Steam Web API. It supports all methods listed here: https://developer.valvesoftware.com/wiki/Steam_Web_API and [one more](#get-list-of-all-games).
 
 ## Supported Ruby version
+
 Gem supports Ruby: 2.0, 2.1, 2.2
 
 ## Installation
@@ -38,7 +39,8 @@ This is better not to include API key as plain text in you repository. For bette
 
 ### Player
 
-**Get list of owned games** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+#### Get list of owned games
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetOwnedGames_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
 # player_steam_id - this is a Steam identifier for user
@@ -67,7 +69,8 @@ game['img_logo_url'] # filename of game logo
 game['has_community_visible_stats'] # indicates there is a stats page with achievements or other game stats available for this game
 ```
 
-**Get user stats for game** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetUserStatsForGame_.28v0002.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+#### Get user stats for game
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetUserStatsForGame_.28v0002.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
 player = SteamWebApi::Player(player_steam_id)
@@ -88,7 +91,8 @@ stat['name']
 stat['value'] # integer
 ```
 
-**Get user achievements for game** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerAchievements_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+#### Get user achievements for game
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerAchievements_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
 player = SteamWebApi::Player(player_steam_id)
@@ -111,7 +115,8 @@ achievement['name'] # achievement name
 achievement['description'] # achievement description
 ```
 
-**Get accounts summaries for list of players** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0002.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+#### Get accounts summaries for list of players
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0002.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
 data = SteamWebApi::Player.summary(player.steam_id, player_2.steam_id)
@@ -140,7 +145,8 @@ first_player['locstatecode']
 first_player['loccityid']
 ```
 
-**Get account summary for single player** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0002.29). This is just more convinient method to get account summary if you already have player instance. To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+#### Get account summary for single player
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0002.29). This is just more convinient method to get account summary if you already have player instance. To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
 player = SteamWebApi::Player.new(steam_id)
@@ -169,7 +175,8 @@ data.profile['locstatecode']
 data.profile['loccityid']
 ```
 
-**Get player friends list** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetFriendList_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+#### Get player friends list 
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetFriendList_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
 player = SteamWebApi::Player.new(steam_id)
@@ -218,7 +225,8 @@ data.lender_steamid # string, steam id of game owner
 data.success  # boolean value indicates if response was succesful
 ```
 
-**Get list of bans for list of players** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerBans_.28v1.29). To make this API call, you need to have API key.
+#### Get list of bans for list of players
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerBans_.28v1.29). To make this API call, you need to have API key.
 
 ```ruby
 data = SteamWebApi::Player.bans(player_1.steam_id, player_2.steam_id)
@@ -234,7 +242,8 @@ bans['DaysSinceLastBan'] # integer
 bans['EconomyBan'] # string, for example 'none'
 ```
 
-**Get list of bans for single player** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerBans_.28v1.29). This is just more convinient method to get player bans if you already have player instance. To make this API call, you need to have API key.
+#### Get list of bans for single player
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerBans_.28v1.29). This is just more convinient method to get player bans if you already have player instance. To make this API call, you need to have API key.
 
 ```ruby
 player = SteamWebApi::Player.new(steam_id)
@@ -252,7 +261,8 @@ data.bans['EconomyBan'] # string, for example 'none'
 
 ### Game
 
-**Get list of all games** (this end-point is not described in official documentation)
+#### Get list of all games 
+This end-point is not described in official documentation.
 
 ```ruby
 data = SteamWebApi::Game.all
@@ -264,7 +274,8 @@ game['appid'] # game id
 game['name']
 ```
 
-**Get game schema** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetSchemaForGame_.28v2.29). To make this API call, you need to have API key for your app.
+#### Get game schema 
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetSchemaForGame_.28v2.29). To make this API call, you need to have API key for your app.
 
 ```ruby
 game = SteamWebApi::Game(game_id)
@@ -291,7 +302,8 @@ stats['defaultvalue']
 stats['displayName']
 ```
 
-**Get list of global game achievements in percentage** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetGlobalAchievementPercentagesForApp_.28v0002.29)
+#### Get list of global game achievements in percentage
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetGlobalAchievementPercentagesForApp_.28v0002.29)
 
 ```ruby
 game = SteamWebApi::Game(game_id)
@@ -305,7 +317,8 @@ achievement['name']
 achievement['percent']
 ```
 
-**Get list of news** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetNewsForApp_.28v0002.29)
+#### Get list of news
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetNewsForApp_.28v0002.29)
 
 ```ruby
 game = SteamWebApi::Game(game_id)
