@@ -6,11 +6,13 @@ require "steam_web_api"
 require "webmock/rspec"
 require "vcr"
 
-WebMock.disable_net_connect!(allow_localhost: true)
+WebMock.disable_net_connect!(allow_localhost: true, allow: 'codeclimate.com')
 
 RSpec.configure do |config|
 
+  
   VCR.configure do |c|
+    c.ignore_hosts 'codeclimate.com'
     c.cassette_library_dir = 'spec/fixtures/vcr'
     c.filter_sensitive_data("<API_KEY>") { ENV["STEAM_WEB_API_KEY"] }
     c.hook_into :webmock
