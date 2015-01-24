@@ -48,7 +48,7 @@ This is better not to include API key as plain text in you repository. For bette
 
 ```ruby
 # player_steam_id - this is a Steam identifier for user
-player = SteamWebApi::Player(player_steam_id)
+player = SteamWebApi::Player.new(player_steam_id)
 data = player.owned_games
 data.count # how many games user posses (integer)
 data.games # list of user's games
@@ -77,7 +77,7 @@ game['has_community_visible_stats'] # indicates there is a stats page with achie
 (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetUserStatsForGame_.28v0002.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
-player = SteamWebApi::Player(player_steam_id)
+player = SteamWebApi::Player.new(player_steam_id)
 data = player.stats_for_game(game_id)
 
 data.steam_id # user steam identifier
@@ -99,7 +99,7 @@ stat['value'] # integer
 (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerAchievements_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
-player = SteamWebApi::Player(player_steam_id)
+player = SteamWebApi::Player.new(player_steam_id)
 data = player.achievements(game_id)
 
 data.steam_id # user steam identifier
@@ -198,7 +198,8 @@ friend['friend_since'] # integer
 player.friends('friend')
 ```
 
-**Get list of recently played games** (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetRecentlyPlayedGames_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+#### Get list of recently played games 
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#GetRecentlyPlayedGames_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
 player = SteamWebApi::Player.new(steam_id)
@@ -220,7 +221,8 @@ game['img_logo_url']
 player.recently_played_games(2)
 ```
 
-**Check if player is playing shared game** (https://developer.valvesoftware.com/wiki/Steam_Web_API#IsPlayingSharedGame_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
+#### Check if player is playing shared game
+(https://developer.valvesoftware.com/wiki/Steam_Web_API#IsPlayingSharedGame_.28v0001.29). To make this API call, you need to have API key for your app and steam identifier of the Steam user.
 
 ```ruby
 player = SteamWebApi::Player.new(steam_id)
@@ -282,7 +284,7 @@ game['name']
 (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetSchemaForGame_.28v2.29). To make this API call, you need to have API key for your app.
 
 ```ruby
-game = SteamWebApi::Game(game_id)
+game = SteamWebApi::Game.new(game_id)
 schema = game.schema
 
 schema.name # game name 
@@ -310,7 +312,7 @@ stats['displayName']
 (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetGlobalAchievementPercentagesForApp_.28v0002.29)
 
 ```ruby
-game = SteamWebApi::Game(game_id)
+game = SteamWebApi::Game.new(game_id)
 data = game.achievement_percentages
 
 data.achievements # list of achievements
@@ -325,7 +327,7 @@ achievement['percent']
 (https://developer.valvesoftware.com/wiki/Steam_Web_API#GetNewsForApp_.28v0002.29)
 
 ```ruby
-game = SteamWebApi::Game(game_id)
+game = SteamWebApi::Game.new(game_id)
 news = game.news
 
 news.app_id # game id
