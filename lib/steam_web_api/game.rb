@@ -19,7 +19,7 @@ module SteamWebApi
 
 		def schema
 			@response = get('/ISteamUserStats/GetSchemaForGame/v2', appid: game_id, key: SteamWebApi.config.api_key)
-			build_response('game') { |data| { name: data['gameName'], version: data['gameVersion'], achievements: data['availableGameStats']['achievements'], stats: data['availableGameStats']['stats'] } }
+			build_response('game') { |data| { name: data['gameName'], version: data['gameVersion'], achievements: data.fetch('availableGameStats') { {} }.fetch('achievements') { [] }, stats: data.fetch('availableGameStats') { {} }.fetch('stats') { [] } } }
 		end
 
 		def achievement_percentages

@@ -47,33 +47,53 @@ RSpec.describe SteamWebApi::Game do
 	end
 
 	describe '#schema' do
-	  
-		it 'returns game schema' do
-		  VCR.use_cassette('game_schema') do
-		  	schema = game.schema
-		  	expect(schema.name).to eq 'ValveTestApp8930'
-		  	expect(schema.version).to eq '108'
-		  	expect(schema.achievements.first).to eq(
-		  			{ 
-		  				"name" => "ACHIEVEMENT_WIN_WASHINGTON",
+
+		context 'when game has schema' do
+		  
+			it 'returns game schema' do
+			  VCR.use_cassette('game_schema') do
+			  	schema = game.schema
+			  	expect(schema.name).to eq 'ValveTestApp8930'
+			  	expect(schema.version).to eq '108'
+			  	expect(schema.achievements.first).to eq(
+			  			{ 
+			  				"name" => "ACHIEVEMENT_WIN_WASHINGTON",
+								"defaultvalue" => 0,
+								"displayName" => "First in the Hearts of Your Countrymen",
+								"hidden" => 0,
+								"description" => "Beat the game on any difficulty setting as Washington.",
+								"icon" => "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/8930/4cf17a59d70b2decfd4369de8a7429e7b00f5ab8.jpg",
+								"icongray" => "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/8930/2ce109f9be6cb3193a385444b9b0b0ffcc7b2219.jpg"
+			  			}
+			  		)
+			  	expect(schema.stats.first).to eq(
+			  		{
+			  			"name" => "ESTEAMSTAT_TOTAL_WINS",
 							"defaultvalue" => 0,
-							"displayName" => "First in the Hearts of Your Countrymen",
-							"hidden" => 0,
-							"description" => "Beat the game on any difficulty setting as Washington.",
-							"icon" => "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/8930/4cf17a59d70b2decfd4369de8a7429e7b00f5ab8.jpg",
-							"icongray" => "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/8930/2ce109f9be6cb3193a385444b9b0b0ffcc7b2219.jpg"
-		  			}
-		  		)
-		  	expect(schema.stats.first).to eq(
-		  		{
-		  			"name" => "ESTEAMSTAT_TOTAL_WINS",
-						"defaultvalue" => 0,
-						"displayName" => "Total Games Won."
-		  		}
-		  	) 
-		  	expect(schema.success).to be true
-		  end
+							"displayName" => "Total Games Won."
+			  		}
+			  	) 
+			  	expect(schema.success).to be true
+			  end
+			end
+
 		end
+	  
+	  context 'when game does not have schema' do
+	    
+	  	it 'returns object with empty values' do
+	  	  VCR.use_cassette('game_schema_no_schema') do
+	  	  	schema = SteamWebApi::Game.new(4760).schema
+	  	  	expect(schema.name).to be_nil
+	  	  	expect(schema.version).to be_nil
+	  	  	expect(schema.achievements).to eq []
+	  	  	expect(schema.stats).to eq []
+	  	  	expect(schema.success).to be true    
+	  	  end
+	  	end
+
+	  end
+		
 
 	end
 
